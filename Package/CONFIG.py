@@ -74,14 +74,15 @@ def MAIN_EXTRACT(args):
     set_global(args)
 
     ops.mkdir(dst_bin_dir)
-    ops.copyto(ops.path_join(src_bin_dir, "mkfs.btrfs"), dst_bin_dir)
-    ops.copyto(ops.path_join(src_bin_dir, "btrfs"), dst_bin_dir)
+    ops.copyto(ops.path_join(src_sbin_dir, "mkfs.btrfs"), dst_bin_dir)
+    ops.copyto(ops.path_join(src_sbin_dir, "btrfs"), dst_bin_dir)
 
     ops.mkdir(dst_lib_dir)
-    ops.copyto(ops.path_join(src_lib_dir, "liblzo2.so.2.0.0"), dst_lib_dir)
-    ops.ln(dst_lib_dir, "liblzo2.so.2.0.0", "liblzo2.so.2.0")
-    ops.ln(dst_lib_dir, "liblzo2.so.2.0.0", "liblzo2.so.2")
-    ops.ln(dst_lib_dir, "liblzo2.so.2.0.0", "liblzo2.so")
+    lib_so = "liblzo2.so.2.0.0"
+    ops.copyto(ops.path_join(src_lib_dir, lib_so), dst_lib_dir)
+    ops.ln(dst_lib_dir, lib_so, "liblzo2.so.2.0")
+    ops.ln(dst_lib_dir, lib_so, "liblzo2.so.2")
+    ops.ln(dst_lib_dir, lib_so, "liblzo2.so")
 
     return True
 
